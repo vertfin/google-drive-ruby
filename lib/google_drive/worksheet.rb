@@ -403,7 +403,7 @@ module GoogleDrive
       sent = false
 
       if @meta_modified
-        add_request({
+        insert_request({
           update_sheet_properties: {
             properties: {
               sheet_id: sheet_id,
@@ -641,6 +641,10 @@ module GoogleDrive
     # equivalent) which will be applied on the next call to the save method.
     def add_request(request)
       @v4_requests.push(request)
+    end
+
+    def insert_request(request)
+      @v4_requests.unshift(request)
     end
 
     # @api private
